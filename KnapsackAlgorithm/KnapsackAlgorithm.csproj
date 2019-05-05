@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Knapsack.cs" />
+    <Compile Include="Entities\KnapsackTable.cs" />
     <Compile Include="PackingAlgorithm\PackingAlgorithm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

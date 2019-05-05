@@ -7,6 +7,6 @@
         public static PerformanceTestCase KnapsackWeight100ItemsCount200 = new PerformanceTestCase(100, 200, Seed);
         public static PerformanceTestCase KnapsackWeight1000ItemsCount2000 = new PerformanceTestCase(1000, 2000, Seed);
         public static PerformanceTestCase KnapsackWeight10000ItemsCount20000 = new PerformanceTestCase(10000, 20000, Seed);
-        public static PerformanceTestCase KnapsackWeight100000ItemsCount200000 = new PerformanceTestCase(100000, 200000, Seed);
+        public static PerformanceTestCase KnapsackWeight20000ItemsCount40000 = new PerformanceTestCase(20000, 40000, Seed);
     }
 }

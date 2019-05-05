@@ -12,7 +12,7 @@ namespace KnapsackAlgorithm.Tests.Performance
         [Test, Order(1)]
         public void TranslateMethodToMachineCode()
         {
-            PackingAlgorithm.GetItemsWithGreatestCost(new List<Item>(), new Knapsack(0));
+            PackingAlgorithm.GetMaxPossibleCost(new List<Item>(), new Knapsack(0));
         }
 
         [Test, Order(2)]
@@ -52,14 +52,14 @@ namespace KnapsackAlgorithm.Tests.Performance
         }
 
         [Test, Order(7)]
-        public void KnapsackWeight100000ItemsCount200000()
+        public void KnapsackWeight20000ItemsCount40000()
         {
-            RunTestCase(PerformanceTestCases.KnapsackWeight100000ItemsCount200000);
+            RunTestCase(PerformanceTestCases.KnapsackWeight20000ItemsCount40000);
         }
 
         private void RunTestCase(PerformanceTestCase testCase)
         {
-            PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
+            PackingAlgorithm.GetMaxPossibleCost(testCase.AllItems, testCase.Knapsack);
         }
     }
 }

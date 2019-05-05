@@ -38,7 +38,7 @@ namespace KnapsackAlgorithm.Tests.Correctness
         private void PackingAssert(CorrectnessTestCase testCase)
         {
             var greatestCost =
-                PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
+                PackingAlgorithm.GetMaxPossibleCost(testCase.AllItems, testCase.Knapsack);
             Assert.AreEqual(testCase.ExpectedGreatestCost, greatestCost);
         }
     }

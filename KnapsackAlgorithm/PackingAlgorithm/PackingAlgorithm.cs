@@ -1,39 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using KnapsackAlgorithm.Entities;
 
 namespace KnapsackAlgorithm
 {
     public static class PackingAlgorithm
     {
-        public static double GetItemsWithGreatestCost(List<Item> allItems, Knapsack knapsack)
+        public static double GetMaxPossibleCost(List<Item> allItems, Knapsack knapsack)
         {
-            var knapsacksMatrix = new double[allItems.Count + 1, knapsack.TotalWeight + 1];
-            for (int item = 1; item < knapsacksMatrix.GetLength(0); item++)
+            var table = new KnapsackTable(knapsack.TotalWeight);
+
+            foreach (var item in allItems)
             {
-                for (int weight = 1; weight <knapsacksMatrix.GetLength(1); weight++)
-                {
-                    var currentItem = allItems[item - 1];
-                    var prevValueForThisWeight = knapsacksMatrix[item - 1, weight];
-                    var remainingWeight = weight - currentItem.Weight;
-                    if (remainingWeight >= 0)
-                    {
-                        var maxValueInRemainingWeight = knapsacksMatrix[item - 1, remainingWeight];
-                        var valueWithThisItem = maxValueInRemainingWeight + currentItem.Cost;
-                        var currentWeightMaxValue = Math.Max(prevValueForThisWeight, valueWithThisItem);
-                        knapsacksMatrix[item, weight] = currentWeightMaxValue;
-                    }
-                    else
-                    {
-                        knapsacksMatrix[item, weight] = prevValueForThisWeight;
-                    }
-                }
+                ComputeMaxCostForEachWeight(knapsack, item, table);
+                table.NewLine();
             }
 
-            return knapsacksMatrix[allItems.Count, knapsack.TotalWeight];
+            return table.GetResult();
         }
 
+        private static void ComputeMaxCostForEachWeight(Knapsack knapsack, Item item, KnapsackTable table)
+        {
+            for (var weight = 1; weight <= knapsack.TotalWeight; weight++)
+            {
+                ComputeMaxCost(item, weight, table);
+            }
+        }
+
+        private static void ComputeMaxCost(Item item, int weight, KnapsackTable table)
+        {
+            var currentItem = item;
+            var prevValueForThisWeight = table.GetPrevCost(weight);
+            var remainingWeight = weight - currentItem.Weight;
+
+            if (remainingWeight >= 0)
+            {
+                var maxValueInRemainingWeight = table.GetPrevCost(remainingWeight);
+                var valueWithThisItem = maxValueInRemainingWeight + currentItem.Cost;
+                var currentWeightMaxValue = Math.Max(prevValueForThisWeight, valueWithThisItem);
+                table.SetCurrentCost(weight, currentWeightMaxValue);
+            }
+            else
+            {
+                table.SetCurrentCost(weight, prevValueForThisWeight);
+            }
+        }
     }
 }
