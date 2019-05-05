@@ -8,37 +8,37 @@ namespace KnapsackAlgorithm.Tests.Correctness
         [Test]
         public void ShouldSelectExpensiveItemsAmongManyChip()
         {
-            PackingAssert(TestCases.FewExpensiveAndManyChipItems);
+            PackingAssert(CorrectnessTestCases.FewExpensiveAndManyChipItems);
         }
 
         [Test]
         public void ShouldPreferTwoChipItemsWithHightSumCostToOneExpensive()
         {
-            PackingAssert(TestCases.OneExpensiveAndTwoChipItemsWithGreatestSumCost);
+            PackingAssert(CorrectnessTestCases.OneExpensiveAndTwoChipItemsWithGreatestSumCost);
         }
 
         [Test]
-        public void ShouldReturnNoItemsWhenNotEnoughWeight()
+        public void ShouldReturnZeroCostWhenNotEnoughWeight()
         {
-            PackingAssert(TestCases.NoItemsWhenNotEnoughWeight);
+            PackingAssert(CorrectnessTestCases.ZeroCostWhenNotEnoughWeight);
         }
 
         [Test]
-        public void ShouldReturnCorrectResultOnSimpleTestCase()
+        public void ShouldWorkCorrectOnGoldenCase()
         {
-            PackingAssert(TestCases.SimpleTestCase);
+            PackingAssert(CorrectnessTestCases.GoldenCase);
         }
 
         [Test]
-        public void ShouldReturnNoItemsOnSimpleTestCase2()
+        public void ShouldReturnZeroCostWhenNoItems()
         {
-            PackingAssert(TestCases.SimpleTestCase2);
+            PackingAssert(CorrectnessTestCases.ZeroCostWhenNoItems);
         }
 
-        private void PackingAssert(TestCase testCase)
+        private void PackingAssert(CorrectnessTestCase testCase)
         {
             var greatestCost =
-                PackingAlgorithm.PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
+                PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
             Assert.AreEqual(testCase.ExpectedGreatestCost, greatestCost);
         }
     }

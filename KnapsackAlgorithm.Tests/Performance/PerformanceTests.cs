@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using KnapsackAlgorithm.Entities;
 using NUnit.Framework;
 
 namespace KnapsackAlgorithm.Tests.Performance
@@ -5,58 +9,57 @@ namespace KnapsackAlgorithm.Tests.Performance
     [TestFixture]
     public class PerformanceTests
     {
-        [Test]
-        public void ShouldWarmup()
+        [Test, Order(1)]
+        public void TranslateMethodToMachineCode()
         {
-            PackingAssert(TestCases.WarmUpTest);
+            PackingAlgorithm.GetItemsWithGreatestCost(new List<Item>(), new Knapsack(0));
         }
 
-        [Test]
-        public void ShouldPerformanceTest()
+        [Test, Order(2)]
+        public void GenerateTestCases()
         {
-            PackingAssert(TestCases.FirstPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest2()
-        {
-            PackingAssert(TestCases.SecondPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest3()
-        {
-            PackingAssert(TestCases.ThirdPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest4()
-        {
-            PackingAssert(TestCases.FourthPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest5()
-        {
-            PackingAssert(TestCases.FifthPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest6()
-        {
-            PackingAssert(TestCases.SixthPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest7()
-        {
-            PackingAssert(TestCases.SeventhPerformanceTest);
-        }
-        [Test]
-        public void ShouldPerformanceTest8()
-        {
-            PackingAssert(TestCases.EighthPerformanceTest);
+            foreach (var staticField in 
+                typeof(PerformanceTestCases)
+                .GetRuntimeFields()
+                .Where(field => field.FieldType == typeof(PerformanceTestCase)))
+            {
+                staticField.GetValue(null);
+            }
         }
 
-        private void PackingAssert(PerformanceTest testCase)
+        [Test, Order(3)]
+        public void KnapsackWeight10ItemsCount20()
         {
-            var greatestCost =
-                PackingAlgorithm.PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
-            Assert.AreEqual(greatestCost, testCase.Actual);
+            RunTestCase(PerformanceTestCases.KnapsackWeight10ItemsCount20);
+        }
+
+        [Test, Order(4)]
+        public void KnapsackWeight100ItemsCount200()
+        {
+            RunTestCase(PerformanceTestCases.KnapsackWeight100ItemsCount200);
+        }
+
+        [Test, Order(5)]
+        public void KnapsackWeight1000ItemsCount2000()
+        {
+            RunTestCase(PerformanceTestCases.KnapsackWeight1000ItemsCount2000);
+        }
+
+        [Test, Order(6)]
+        public void KnapsackWeight10000ItemsCount20000()
+        {
+            RunTestCase(PerformanceTestCases.KnapsackWeight10000ItemsCount20000);
+        }
+
+        [Test, Order(7)]
+        public void KnapsackWeight100000ItemsCount200000()
+        {
+            RunTestCase(PerformanceTestCases.KnapsackWeight100000ItemsCount200000);
+        }
+
+        private void RunTestCase(PerformanceTestCase testCase)
+        {
+            PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
         }
     }
 }

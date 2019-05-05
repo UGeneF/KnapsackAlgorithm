@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KnapsackAlgorithm.Entities;
 
-namespace KnapsackAlgorithm.PackingAlgorithm
+namespace KnapsackAlgorithm
 {
     public static class PackingAlgorithm
     {

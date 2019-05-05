@@ -55,11 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Correctness\CorrectnessTests.cs" />
-    <Compile Include="Correctness\TestCase.cs" />
-    <Compile Include="Correctness\TestCases.cs" />
+    <Compile Include="Correctness\CorrectnessTestCase.cs" />
+    <Compile Include="Correctness\CorrectnessTestCases.cs" />
+    <Compile Include="Performance\PerformanceTestCases.cs" />
     <Compile Include="Performance\PerformanceTests.cs" />
-    <Compile Include="Performance\TestCase.cs" />
-    <Compile Include="Performance\TestCases.cs" />
+    <Compile Include="Performance\PerformanceTestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
