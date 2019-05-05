@@ -13,13 +13,13 @@ namespace KnapsackAlgorithm.Tests.Correctness
             new Item(3, 3),
             new Item(3, 4),
             new Item(4, 5)
-        }, 0, 2);
+        },25);
 
         public static TestCase OneExpensiveAndTwoChipItemsWithGreatestSumCost = new TestCase(6, new List<Item>
         {
             new Item(3, 2),
             new Item(4, 3),
             new Item(3, 2),
-        }, 0, 2);
+        }, 4);
     }
 }

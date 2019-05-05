@@ -19,8 +19,8 @@ namespace KnapsackAlgorithm.Tests.Correctness
 
         private void PackingAssert(TestCase testCase)
         {
-            var actualItems = PackingAlgorithm.PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
-            CollectionAssert.AreEquivalent(testCase.ExpectedItems, actualItems);
+            var greatestCost = PackingAlgorithm.PackingAlgorithm.GetItemsWithGreatestCost(testCase.AllItems, testCase.Knapsack);
+            Assert.AreEqual(testCase.ExpectedGreatestCost,greatestCost);
         }
     }
 }

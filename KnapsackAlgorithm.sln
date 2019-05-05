@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackAlgorithm", "KnapsackAlgorithm\KnapsackAlgorithm.csproj", "{73AE1A80-753F-4A6D-958B-6E405E20A808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackAlgorithm.Tests", "UnitTestProject1\KnapsackAlgorithm.Tests.csproj", "{C4E056A5-D0B9-496E-BDBB-3ACB3B5E6DF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackAlgorithm.Tests", "KnapsackAlgorithm.Tests\KnapsackAlgorithm.Tests.csproj", "{C4E056A5-D0B9-496E-BDBB-3ACB3B5E6DF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
