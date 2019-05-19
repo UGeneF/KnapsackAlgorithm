@@ -12,7 +12,7 @@ namespace KnapsackAlgorithm
             while (true)
             {
                 Console.WriteLine("Enter the backpack capacity: ");
-                var capacity = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());               
+                var capacity = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
                 var items = ReadItemsFromConsole();
 
                 WriteResultToConsole(capacity, items);
@@ -21,11 +21,13 @@ namespace KnapsackAlgorithm
 
         private static void WriteResultToConsole(int capacity, List<Item> items)
         {
-            Console.WriteLine("Capacity: " + capacity);
-            for (int i = 0; i < items.Count; i++)
+            Console.WriteLine("-------------------------");
+            Console.WriteLine($"Capacity: {capacity}");
+            for (var i = 0; i < items.Count; i++)
                 Console.WriteLine($"{i + 1}: {items[i].Weight}kg {items[i].Cost}$");
             var result = PackingAlgorithm.GetMaxPossibleCost(items, new Knapsack(capacity));
             Console.WriteLine($"Result: {result}$");
+            Console.WriteLine("-------------------------");
         }
 
         private static List<Item> ReadItemsFromConsole()
@@ -37,7 +39,9 @@ namespace KnapsackAlgorithm
             {
                 Console.Write("Enter item weight, cost: ");
                 var str = Console.ReadLine()?.Split(' ');
-                if (str != null) items.Add(new Item(int.Parse(str[0]), double.Parse(str[1])));
+                if (str == null || str.Length < 2)
+                    throw new ArgumentException();
+                items.Add(new Item(int.Parse(str[0]), double.Parse(str[1])));
             }
 
             return items;
